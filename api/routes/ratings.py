@@ -13,6 +13,4 @@ def add_rating(rating: Rating):
 def get_ratings_for_movie(movie_id: int):
     return rating_repo.get_ratings_for_movie(movie_id)
 
-@router.get("/ratings/user/{user_id}", tags=["Ratings"])
-def get_user_ratings(user_id: str):
-    return rating_repo.get_user_ratings(user_id)
+
