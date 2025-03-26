@@ -12,4 +12,5 @@ class MovieRepository:
         return self.collection.find_one({"id": movie_id}, {"_id": 0})
     
     def get_movie_by_name(self, movie_name: str):
-        return self.collection.find_one({"title": movie_name}, {"_id": 0})
+        movies = self.collection.find({"title": {"$regex": movie_name, "$options": "i"}}, {"_id": 0})
+        return list(movies)
