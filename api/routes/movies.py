@@ -14,3 +14,11 @@ def get_movie_by_id(movie_id: int):
     if movie:
         return movie
     return {"error": "Movie not found"}
+
+
+@router.get("/movies/name/{movie_name}", tags=["Movies"])
+def get_movie_by_name(movie_name: str):
+    movie = movie_repo.get_movie_by_name(movie_name)
+    if movie:
+        return movie
+    return {"error": "Movie not found"}
