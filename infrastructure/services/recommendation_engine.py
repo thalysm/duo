@@ -8,7 +8,7 @@ class RecommendationEngine:
         self.df = pd.read_csv("movies_processed.csv")
         self.matrix = load_npz("combined_matrix.npz")
 
-    def recommend(self, user1_movies, user2_movies, top_n=10):
+    def recommend(self, user1_movies, user2_movies, top_n=5):
         indices = self.df[self.df["title"].isin(user1_movies + user2_movies)].index.tolist()
 
         print(user1_movies,user2_movies)
