@@ -32,7 +32,8 @@ pip install -r requirements.txt
 Crie um arquivo `.env` na raiz do projeto e defina as variáveis:
 ```env
 MONGO_URI=mongodb://localhost:27017
-dATABASE_NAME=duo
+DATABASE_NAME=duo
+API_TMDB= https://www.themoviedb.org/settings/api
 ```
 
 ### 4️⃣ Rodar a API
@@ -57,6 +58,9 @@ A API estará rodando em: [http://127.0.0.1:8000](http://127.0.0.1:8000)
 ### ⭐ Avaliações
 - **`POST /ratings/ratings`** - Processa a avaliação da recomendação
 - **`GET /ratings/ratings/movie/{movie_id}`** - Processa a avaliação da recomendação
+
+### 🤖 Scripts
+- **`Update TMDB movies`** - Baixa arquivo movies.json que contem ID e Nome dos filmes. Utiliza o movies.json para atualizar o banco de dados.
 
 ## 📌 Contribuição
 Se quiser contribuir, faça um fork, crie uma branch e envie um pull request! 😊
