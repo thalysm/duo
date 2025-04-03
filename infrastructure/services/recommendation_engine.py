@@ -9,7 +9,7 @@ class RecommendationEngine:
         self.matrix = load_npz("combined_matrix.npz")
 
     def recommend(self, user1_movies, user2_movies, top_n=5):
-        indices = self.df[self.df["title"].isin(user1_movies + user2_movies)].index.tolist()
+        indices = self.df[self.df["original_title"].isin(user1_movies + user2_movies)].index.tolist()
 
         print(user1_movies,user2_movies)
         if not indices:
@@ -21,9 +21,9 @@ class RecommendationEngine:
         similarities = cosine_similarity([user_vector], self.matrix)[0]
         self.df["similarity"] = similarities
 
-        recommendations = self.df[~self.df["title"].isin(user1_movies + user2_movies)].sort_values(by="similarity", ascending=False).head(top_n)
+        recommendations = self.df[~self.df["original_title"].isin(user1_movies + user2_movies)].sort_values(by="similarity", ascending=False).head(top_n)
 
-        return recommendations[["title", "similarity"]].to_dict(orient="records")
+        return recommendations[["original_title", "similarity","id","poster_path"]].to_dict(orient="records")
 
 if __name__ == "__main__":
     engine = RecommendationEngine()

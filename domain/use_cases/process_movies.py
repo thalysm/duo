@@ -5,24 +5,24 @@ from sklearn.preprocessing import MinMaxScaler, OneHotEncoder
 from scipy.sparse import hstack, save_npz
 import scipy.sparse
 
-from core.database import get_collection  # Ajustei a importação correta do banco de dados
+from core.database import get_collection  
 
 class ProcessMoviesUseCase:
     @staticmethod
     def execute():
-        collection = get_collection("movies")  # Obtendo a coleção correta
+        collection = get_collection("movies")  
         
         cursor = collection.find(
             {
                 "status": "Released",
                 "vote_average": {"$ne": 0},
-                "vote_count": {"$gte": 200},
-                "popularity": {"$gte": 4},
+                "vote_count": {"$gte": 100},
+                "popularity": {"$gte": 2},
                 "runtime": {"$ne": 0}
             },
             {
-                "id": 1, "title": 1, "overview": 1, "genres": 1,
-                "original_language": 1, "popularity": 1,
+                "id": 1, "original_title": 1, "overview": 1, "genres": 1, "title":1,
+                "original_language": 1, "popularity": 1,"poster_path":1,
                 "production_companies": 1, "release_date": 1
             }
         )
