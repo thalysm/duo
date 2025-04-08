@@ -61,6 +61,7 @@ A API estará rodando em: [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
 ### 🤖 Scripts
 - **`Update TMDB movies`** - Baixa arquivo movies.json que contem ID e Nome dos filmes. Utiliza o movies.json para atualizar o banco de dados.
+- **`Gerar title embedding`** - Percorre o banco para gerar o title_embeding baseado no overview e generos. (melhorar a busca)
 
 ## 📌 Contribuição
 Se quiser contribuir, faça um fork, crie uma branch e envie um pull request! 😊
