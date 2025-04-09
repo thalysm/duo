@@ -5,7 +5,7 @@ router = APIRouter()
 engine = RecommendationEngine()
 
 @router.post("/recommend")
-def get_recommendations(user1_movies: list[str], user2_movies: list[str]):
+def get_recommendations(user1_movies: list[int], user2_movies: list[int]):
     if not user1_movies or not user2_movies:
         raise HTTPException(status_code=400, detail="Ambos os usuários devem selecionar filmes.")
     

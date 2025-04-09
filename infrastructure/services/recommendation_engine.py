@@ -10,26 +10,32 @@ class RecommendationEngine:
         self.matrix = load_npz("combined_matrix.npz")
 
 
-    def recommend(self, user1_movies, user2_movies, top_n=5):
-        indices = self.df[self.df["original_title"].isin(user1_movies + user2_movies)].index.tolist()
+    def recommend(self, user1_movie_ids, user2_movie_ids, top_n=5):
+        # Junta todos os IDs
+        selected_ids = user1_movie_ids + user2_movie_ids
 
-        print(user1_movies, user2_movies)
+        # Filtra pelos índices usando os IDs
+        indices = self.df[self.df["id"].isin(selected_ids)].index.tolist()
+
+        print("User 1:", user1_movie_ids, "User 2:", user2_movie_ids)
         if not indices:
             return []
 
+        # Vetor médio do usuário
         user_vector = np.mean(self.matrix[indices], axis=0)
         user_vector = np.asarray(user_vector).flatten()
 
+        # Similaridade com todos os filmes
         similarities = cosine_similarity([user_vector], self.matrix)[0]
         self.df["similarity"] = similarities
 
-        # Remove os filmes já vistos
-        unseen_df = self.df[~self.df["original_title"].isin(user1_movies + user2_movies)]
+        # Remove os filmes que já foram assistidos pelos usuários
+        unseen_df = self.df[~self.df["id"].isin(selected_ids)]
 
-        # Pega os top 25 mais similares
+        # Top 50 mais similares
         top_candidates = unseen_df.sort_values(by="similarity", ascending=False).head(50)
 
-        # Embaralha levemente
+        # Embaralha um pouco para variar as recomendações
         top_candidates = top_candidates.sample(frac=1.0, random_state=random.randint(0, 9999))
 
         # Seleciona os top_n finais
