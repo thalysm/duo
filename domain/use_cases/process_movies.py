@@ -17,7 +17,7 @@ class ProcessMoviesUseCase:
                 "status": "Released",
                 "vote_average": {"$ne": 0},
                 "vote_count": {"$gte": 100},
-                "popularity": {"$gte": 2},
+                "popularity": {"$gte": 0.5},
                 "runtime": {"$ne": 0}
             },
             {
