@@ -12,7 +12,7 @@ Duo é uma API para recomendação de filmes baseada em Machine Learning.
 
 
 
-## ⚡ Como Rodar a API
+## ⚡ Como Rodar a API local
 
 ### 1️⃣ Clonar o Repositório
 ```bash
@@ -41,7 +41,35 @@ PORT=8000
 ```bash
 uvicorn main:app --reload
 ```
+Ou utilizando o comando
+```bash
+python main.py
+```
 A API estará rodando em: [http://127.0.0.1:8000](http://127.0.0.1:8000)
+
+## ⚡ Como Rodar a API Docker (Build)
+
+### 1️⃣ Clonar o Repositório
+```bash
+git clone https://github.com/thalysm/duo
+cd duo
+```
+
+### 2️⃣ Configurar as Variáveis de Ambiente
+Copie o arquivo .env.example para .env e preencha com seus dados:
+```env
+MONGO_URI=mongodb://mongo:27017
+DATABASE_NAME=duo
+API_TMDB= https://www.themoviedb.org/settings/api
+PORT=8000
+```
+
+### 3️⃣ Rode o comando
+```bash
+docker-compose up --build
+```
+A API estará rodando em: [http://127.0.0.1:8000](http://127.0.0.1:8000)
+
 
 ## 🔥 Endpoints Disponíveis
 
@@ -60,12 +88,12 @@ A API estará rodando em: [http://127.0.0.1:8000](http://127.0.0.1:8000)
 - **`POST /ratings/ratings`** - Processa a avaliação da recomendação
 - **`GET /ratings/ratings/movie/{movie_id}`** - Processa a avaliação da recomendação
 
-### 🤖 Scripts
+## 🤖 Scripts Disponíveis
 - **`Update TMDB movies`** - Baixa arquivo movies.json que contem ID e Nome dos filmes. Utiliza o movies.json para atualizar o banco de dados.
 - **`Gerar title embedding [BETA]`** - Percorre o banco para gerar o title_embeding baseado no overview e generos. (melhorar a busca)
 - **`Update IMDB datas`** - Percorre o banco para preencher os campos vote_average, vote_count, tagline , overview e popularity, buscando no IMDB
 
-### 🔣 Tests
+## 🔣 Tests Disponíveis
 - **`Tests API`** - Testa as rotas da API.
 - **`Test_recommendation_engine`** - Testa a função de recomendação (diferentemente de apenas o resultado da API).
 
