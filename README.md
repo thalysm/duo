@@ -29,7 +29,7 @@ pip install -r requirements.txt
 ```
 
 ### 3️⃣ Configurar as Variáveis de Ambiente
-Crie um arquivo `.env` na raiz do projeto e defina as variáveis:
+Copie o arquivo .env.example para .env e preencha com seus dados:
 ```env
 MONGO_URI=mongodb://localhost:27017
 DATABASE_NAME=duo
