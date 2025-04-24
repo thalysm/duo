@@ -34,6 +34,7 @@ Crie um arquivo `.env` na raiz do projeto e defina as variáveis:
 MONGO_URI=mongodb://localhost:27017
 DATABASE_NAME=duo
 API_TMDB= https://www.themoviedb.org/settings/api
+PORT=8000
 ```
 
 ### 4️⃣ Rodar a API
