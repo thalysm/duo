@@ -16,8 +16,22 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get("/")
+def root():
+    return {"message": "Duo está rodando!"}
+
 # Incluindo todas as rotas existentes
 app.include_router(movies_router, tags=["Movies"])
 app.include_router(process_movies_router, prefix="/process", tags=["Processing"])
 app.include_router(recommendations_router, prefix="/recommendations", tags=["Recommendations"])
 app.include_router(ratings_router, tags=["Ratings"])
+
+if __name__ == "__main__":
+    from dotenv import load_dotenv
+    import os
+    import uvicorn
+
+    load_dotenv()
+
+    PORT = int(os.getenv("PORT", 8000))
+    uvicorn.run("main:app", host="0.0.0.0", port=PORT, reload=True)
