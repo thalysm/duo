@@ -7,7 +7,7 @@ rating_repo = RatingRepository()
 
 @router.post("/ratings", tags=["Ratings"])
 def add_rating(rating: Rating):
-    return rating_repo.add_rating(rating.dict())
+    return rating_repo.add_rating(rating.model_dump())
 
 @router.get("/ratings/movie/{movie_id}", tags=["Ratings"])
 def get_ratings_for_movie(movie_id: int):
