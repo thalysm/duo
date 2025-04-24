@@ -64,6 +64,10 @@ A API estará rodando em: [http://127.0.0.1:8000](http://127.0.0.1:8000)
 - **`Gerar title embedding [BETA]`** - Percorre o banco para gerar o title_embeding baseado no overview e generos. (melhorar a busca)
 - **`Update IMDB datas`** - Percorre o banco para preencher os campos vote_average, vote_count, tagline , overview e popularity, buscando no IMDB
 
+### 🔣 Tests
+- **`Tests API`** - Testa as rotas da API.
+- **`Test_recommendation_engine`** - Testa a função de recomendação (diferentemente de apenas o resultado da API).
+
 ## 📌 Contribuição
 Se quiser contribuir, faça um fork, crie uma branch e envie um pull request! 😊
 
